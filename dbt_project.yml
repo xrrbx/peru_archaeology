@@ -2,7 +2,7 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'dbt_fundamentals'
+name: 'peru_archaeology' # This is the internal name used for compiling SQL
 version: '1.0.0'
 config-version: 2
 
@@ -28,25 +28,22 @@ clean-targets:         # directories to be removed by `dbt clean`
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
-# In this example config, we tell dbt to build all models in the jaffle_shop project
-# as tables. These settings can be overridden in the individual model files
-# using the `{{ config(...) }}` macro.
-
-# previous version
-# models:
-#   jaffle_shop:
-#     staging:
-#       +materialized: view
-#     marts:
-#       +materialized: table
 
 models:
-  dbt_fundamentals:
-    +dataset: dbt_fundamentals  # Forces ALL models in this repo into the 'dbt_fundamentals' dataset
+  peru_archaeology: # Matches the name: config at the top of this file
     
+    # --- STAGING LAYER ---
+    # Points to: models/staging/
     staging:
-      +materialized: view       # Models inside /staging will be built as views
+      +database: stg-peru-archaeology       # Writes clean views to your Staging BQ project
+      +schema: staging                      # Creates dataset: <target>_staging
+      +materialized: view                   # Keeps views lightweight & dynamic
+
+    # --- MARTS LAYER ---
+    # Points to: models/marts/
     marts:
-      +materialized: table      # Models inside /marts will be built as tables
+      +database: peru-archaeology           # Writes production tables to your Marts BQ project
+      +schema: core                         # Creates dataset: <target>_core
+      +materialized: table                  # Materialized as tables for fast query performance
 
     
