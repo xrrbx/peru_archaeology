@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: stg_south_america_radiocarbon
+    description: "Staged and cleaned records of accepted archaeological radiocarbon dates from Peru."
+   

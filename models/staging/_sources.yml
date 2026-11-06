@@ -3,7 +3,8 @@ version: 2
 sources:
   - name: peru_archaeo_rc_dataset
     database: src-peru-archaeology  # Or the project ID where your raw CSVs live
-    schema: peru_archaeo_rc_dataset
+    schema: p3k14c
     tables:
-      - name: accepted_dates
-      - name: rejected_dates
+      - name: raw_south_america_radiocarbon
+        description: "Raw radiocarbon dataset for South America from p3k14c."
+      
